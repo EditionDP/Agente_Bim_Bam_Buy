@@ -110,7 +110,7 @@ class RAGManager:
         self.guardar_indice()
 
         self.retriever = self.vectorstore.as_retriever(
-            search_kwargs={"k": 4}
+            search_kwargs={"k": 2}
         )
 
         logging.info("Índice creado correctamente.")
@@ -148,7 +148,7 @@ class RAGManager:
         
         self.retriever = self.vectorstore.as_retriever(
 
-            search_kwargs={"k": 4}
+            search_kwargs={"k": 2}
 
             )
 
