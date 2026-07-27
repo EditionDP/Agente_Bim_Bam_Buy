@@ -1,4 +1,3 @@
-import os
 import logging
 from pathlib import Path
 from config import FAISS_INDEX_FILE
@@ -83,13 +82,13 @@ class RAGManager:
     # ==========================================
     def crear_indice(self):
 
-        logging.info("Creando índice FAISS...")
-        print("PDF_DIR =", PDF_DIR)
-        print("Ruta absoluta =", Path(PDF_DIR).resolve())
-        print("Existe =", Path(PDF_DIR).exists())
+        logging.info(f"PDF_DIR: {PDF_DIR}")
+        logging.info(f"Ruta: {Path(PDF_DIR).resolve()}")
+        logging.info(f"Existe: {Path(PDF_DIR).exists()}")
+        
 
         documentos = []
-        print(list(Path(PDF_DIR).glob("*.pdf")))
+        logging.info(list(Path(PDF_DIR).glob("*.pdf")))
 
         for archivo in Path(PDF_DIR).glob("*.pdf"):
 
@@ -214,13 +213,13 @@ Pregunta:
 """
 
             respuesta = self.llm.invoke(prompt)
-
+            
             return respuesta.content
-
+        
         except Exception as e:
-
-            logging.error(e)
-
+            
+            logging.exception(e)
+            
             return "Ocurrió un error al procesar la consulta."
 
 
@@ -241,11 +240,17 @@ Pregunta:
      # Health Check
      # ==========================================
     def health(self):
-
+        
         return {
+            
             "status": "online",
+            
             "modelo": MODEL_NAME,
+            
+            "embeddings": EMBEDDING_MODEL,
+            
             "indice_cargado": self.vectorstore is not None
+        
         }
 
     # ==========================================
