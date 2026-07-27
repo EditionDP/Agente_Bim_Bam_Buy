@@ -1,6 +1,7 @@
 import os
 import logging
 from pathlib import Path
+from config import FAISS_INDEX_FILE
 
 from langchain_openai import ChatOpenAI
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -25,7 +26,8 @@ class RAGManager:
         self.vectorstore = None
 
         self.retriever = None
-            # ==========================================
+    
+    # ==========================================
     # Cargar el modelo LLM
     # ==========================================
     def _cargar_llm(self):
@@ -39,6 +41,21 @@ class RAGManager:
             base_url="https://openrouter.ai/api/v1",
             temperature=0
         )
+    # -----------------------------
+    # Cargar o crear el índice
+    # -----------------------------
+
+    if Path(FAISS_INDEX_FILE).exists():
+        
+        logging.info("Cargando índice FAISS...")
+        
+        self.cargar_indice()
+    
+    else:
+        
+        logging.info("No existe índice. Creándolo automáticamente...")
+        
+        self.crear_indice()
 
 
     # ==========================================
