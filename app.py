@@ -37,13 +37,15 @@ def create_app():
     # -----------------------------
 
     CORS(
-        app,
-        resources={
-            r"/*": {
-                "origins": "*"
-            }
+    app,
+    resources={
+        r"/*": {
+            "origins": [
+                "*"
+            ]
         }
-    )
+    }
+)
 
     # -----------------------------
     # Registrar Blueprint
@@ -76,3 +78,10 @@ if __name__ == "__main__":
         debug=config.DEBUG
 
     )
+
+@app.route("/")
+def home():
+    return {
+        "success": True,
+        "message": "BimBam Agent v2.0 funcionando correctamente."
+    }
