@@ -335,6 +335,10 @@ const URL_CHAT_OFICIAL =
 
 Railway
 
+
+<img width="1473" height="649" alt="imagen_del_despliegue" src="https://github.com/user-attachments/assets/e712fc15-72ea-4023-a63d-87989645dce6" />
+
+
 Comando de inicio
 
 ```text
