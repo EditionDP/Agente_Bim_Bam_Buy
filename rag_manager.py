@@ -73,15 +73,11 @@ class RAGManager:
     # ==========================================
     def _cargar_embeddings(self):
         
-        logging.info("Cargando embeddings...")
+        logging.info(f"Cargando embeddings: {EMBEDDING_MODEL}")
         
-        return OpenAIEmbeddings(
+        return HuggingFaceEmbeddings(
             
-            model="text-embedding-3-small",
-            
-            api_key=OPENROUTER_API_KEY,
-            
-            base_url=OPENROUTER_BASE_URL
+            model_name=EMBEDDING_MODEL
         
         )
     
