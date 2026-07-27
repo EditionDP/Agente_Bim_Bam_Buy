@@ -4,7 +4,7 @@ from pathlib import Path
 from config import FAISS_INDEX_FILE
 
 from langchain_openai import ChatOpenAI
-from langchain_openai import OpenAIEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import PyMuPDFLoader
@@ -45,16 +45,27 @@ class RAGManager:
     # ==========================================
     # Cargar el modelo LLM
     # ==========================================
-    def _cargar_llm(self):
-
-        logging.info("Cargando modelo LLM...")
+    def _cargar_embeddings(self):
         
-
-        return ChatOpenAI(
-            model=MODEL_NAME,
-            api_key=OPENROUTER_API_KEY,
-            base_url=OPENROUTER_BASE_URL,
-            temperature=TEMPERATURE
+        logging.info("Cargando modelo de Embeddings...")
+        
+        return HuggingFaceEmbeddings(
+            
+            
+            model_name=EMBEDDING_MODEL,
+            
+            model_kwargs={
+                
+                "device": "cpu"
+            
+            },
+            
+            encode_kwargs={
+                
+                "normalize_embeddings": True
+            
+            }
+        
         )
    
     # ==========================================
@@ -62,11 +73,15 @@ class RAGManager:
     # ==========================================
     def _cargar_embeddings(self):
         
-        logging.info("Cargando modelo de Embeddings...")
+        logging.info("Cargando embeddings...")
         
-        return HuggingFaceEmbeddings(
+        return OpenAIEmbeddings(
             
-            model_name=EMBEDDING_MODEL
+            model="text-embedding-3-small",
+            
+            api_key=OPENROUTER_API_KEY,
+            
+            base_url=OPENROUTER_BASE_URL
         
         )
     
