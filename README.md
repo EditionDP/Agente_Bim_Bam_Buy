@@ -20,6 +20,9 @@ Ingresa Aquí para mirar el entorno.
 
 **https://agentebimbam.netlify.app/**
 
+<img width="988" height="692" alt="image" src="https://github.com/user-attachments/assets/165c9ffd-3301-4266-b32b-7c22b48de05a" />
+
+
 ### Backend API
 
 https://agente-bimbam-buy-production.up.railway.app
