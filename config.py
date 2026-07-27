@@ -79,15 +79,15 @@ BASE_DIR = Path(__file__).resolve().parent
 # Chunking
 # -------------------------------------------------------
 
-CHUNK_SIZE = 500
+CHUNK_SIZE = 350
 
-CHUNK_OVERLAP = 80
+CHUNK_OVERLAP = 50
 
 # -------------------------------------------------------
 # Retrieval
 # -------------------------------------------------------
 
-TOP_K = 5
+TOP_K = 2
 
 SIMILARITY_THRESHOLD = 0.35
 
