@@ -237,6 +237,24 @@ Pregunta:
             "carpeta_faiss": VECTORSTORE_DIR,
         }
 
+     # ==========================================
+     # Health Check
+     # ==========================================
+    def health(self):
+
+        return {
+            "status": "online",
+            "modelo": MODEL_NAME,
+            "indice_cargado": self.vectorstore is not None
+        }
+
+    # ==========================================
+    # Status
+    # ==========================================
+    def status(self):
+
+        return self.estado()
+
 
     # ==========================================
     # Listar documentos PDF
