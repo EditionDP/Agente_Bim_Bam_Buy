@@ -28,6 +28,7 @@ api = Blueprint("api", __name__)
 # --------------------------------------------------------
 
 rag = RAGManager()
+rag.cargar_indice()
 
 
 # --------------------------------------------------------
@@ -270,7 +271,9 @@ def indice():
 
         rag.info_indice()
 
-    )@api.route("/recargar", methods=["POST"])
+    )
+
+@api.route("/recargar", methods=["POST"])
 def recargar():
 
     rag.recargar_indice()
