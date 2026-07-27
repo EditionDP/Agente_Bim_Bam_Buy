@@ -27,7 +27,8 @@ api = Blueprint("api", __name__)
 # Inicializar el motor RAG una sola vez
 # --------------------------------------------------------
 
-rag = RAGManager()
+#rag = RAGManager()
+rag = None
 rag.cargar_indice()
 
 
@@ -116,6 +117,11 @@ def status():
 
 @api.route("/preguntar", methods=["POST"])
 def preguntar():
+
+    global rag
+    
+    if rag is None:
+        rag = RAGManager()
 
     datos = request.get_json()
 
