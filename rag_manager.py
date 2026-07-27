@@ -18,25 +18,27 @@ logging.basicConfig(level=logging.INFO)
 class RAGManager:
 
     def __init__(self):
-
+        
         self.llm = self._cargar_llm()
-
+        
         self.embeddings = self._cargar_embeddings()
-
+        
         self.vectorstore = None
-
+        
         self.retriever = None
-
-        # Cargar índice automáticamente
+        
+       # Si ya existe el índice lo carga
+        
         if Path(FAISS_INDEX_FILE).exists():
-
-            logging.info("Cargando índice FAISS...")
-
+            
+            logging.info("Índice encontrado.")
+            
             self.cargar_indice()
-
+        
         else:
+            
+            logging.info("No existe índice.")
 
-            logging.warning("No existe un índice FAISS.")
     
     # ==========================================
     # Cargar el modelo LLM
