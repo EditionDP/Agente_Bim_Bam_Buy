@@ -447,6 +447,7 @@ Respuesta
 ---
 
 # Autor
+<img width="920" height="720" alt="ChatGPT Image 27 jul 2026, 01_33_07 p m" src="https://github.com/user-attachments/assets/60549e50-4f53-43a3-baa2-24b4c6333cda" />
 
 **EditionDP**
 
