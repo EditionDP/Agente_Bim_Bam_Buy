@@ -1,344 +1,203 @@
-# 🤖 BimBam Buy Agent 
+# 🤖 BimBam Buy Agent
 
-Asistente inteligente desarrollado para **BimBam Buy** utilizando **Flask + LangChain + FAISS + OpenRouter**, capaz de responder preguntas basadas exclusivamente en una base documental compuesta por archivos PDF.
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Flask](https://img.shields.io/badge/Flask-3.x-black)
+![LangChain](https://img.shields.io/badge/LangChain-RAG-green)
+![Railway](https://img.shields.io/badge/Deploy-Railway-purple)
+![Netlify](https://img.shields.io/badge/Frontend-Netlify-00C7B7)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-El sistema implementa una arquitectura **RAG (Retrieval-Augmented Generation)**, permitiendo consultar información empresarial de forma rápida, precisa y escalable.
+Asistente Inteligente basado en IA para BimBam Buy.
 
----
-
-# Características
-
-- 🤖 Chat inteligente basado en IA.
-- 📚 Base de conocimiento construida a partir de múltiples documentos PDF.
-- 🔎 Búsqueda semántica mediante FAISS.
-- ⚡ Índice persistente (los embeddings se generan una sola vez).
-- 📄 Soporte para múltiples documentos.
-- 🧠 Embeddings con Sentence Transformers.
-- 🌐 Integración con OpenRouter.
-- 🔐 Configuración mediante variables de entorno.
-- 🏗 Arquitectura modular y fácil de mantener.
-- ☁ Compatible con PythonAnywhere, Render, Railway y Docker.
-- 🎨 Frontend web ligero en HTML, CSS y JavaScript.
+Utiliza un sistema **RAG (Retrieval-Augmented Generation)** con **FAISS + LangChain + OpenRouter** para responder únicamente con información contenida en la documentación oficial de la empresa.
 
 ---
 
-# Arquitectura del proyecto
+## 🌐 Demo
+
+### Frontend
+Ingresa Aquí para mirar el entorno.
+
+**https://agentebimbam.netlify.app/**
+
+### Backend API
+
+https://agente-bimbam-buy-production.up.railway.app
+
+---
+
+## 🚀 Características
+
+- ✅ Chat en tiempo real
+- ✅ Interfaz moderna y responsiva
+- ✅ Recuperación semántica mediante FAISS
+- ✅ Embeddings con HuggingFace
+- ✅ LLM mediante OpenRouter
+- ✅ Base documental en PDF
+- ✅ Índice FAISS persistente
+- ✅ API REST con Flask
+- ✅ Despliegue en Railway
+- ✅ Frontend en Netlify
+
+---
+
+## 🏗 Arquitectura
 
 ```
-BimBam-Agent-v2/
+Frontend (Netlify)
+        │
+        ▼
+Flask API (Railway)
+        │
+        ▼
+RAG Manager
+        │
+ ┌──────────────┐
+ │ FAISS Index  │
+ └──────────────┘
+        │
+        ▼
+PDFs de conocimiento
+        │
+        ▼
+OpenRouter LLM
+```
 
+---
+
+## 📁 Estructura del proyecto
+
+```
+Agente_Bim_Bam_Buy/
 │
 ├── app.py
-├── config.py
 ├── routes.py
 ├── rag_manager.py
 ├── crear_indice.py
-├── utils.py
+├── config.py
 ├── requirements.txt
-├── README.md
-├── .env.example
+├── render.yaml
+├── runtime.txt
 │
 ├── data/
-│   ├── documentos_pdf/
-│   ├── vectorstore/
-│   ├── uploads/
-│   └── logs/
+│   ├── pdf/
+│   └── vectorstore/
 │
-├── static/
+├── logs/
 │
-└── templates/
-    └── index.html
+└── README.md
 ```
 
 ---
 
-# Tecnologías utilizadas
-
-- Python 3.11
-- Flask
-- LangChain
-- FAISS
-- OpenRouter
-- Sentence Transformers
-- PyMuPDF
-- HTML5
-- CSS3
-- JavaScript
-
----
-
-# Instalación
-
-## 1. Clonar el proyecto
-
-```bash
-git clone https://github.com/TU_USUARIO/BimBam-Agent-v2.git
-
-cd BimBam-Agent-v2
-```
-
----
-
-## 2. Crear un entorno virtual
-
-### Windows
-
-```bash
-python -m venv .venv
-
-.venv\Scripts\activate
-```
-
-### Linux / macOS
-
-```bash
-python3 -m venv .venv
-
-source .venv/bin/activate
-```
-
----
-
-## 3. Instalar dependencias
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## 4. Configurar variables de entorno
-
-Crear un archivo llamado
-
-```
-.env
-```
-
-a partir de
-
-```
-.env.example
-```
-
-y configurar como mínimo:
+## ⚙ Variables de entorno
 
 ```
 OPENROUTER_API_KEY=
+
 MODEL_NAME=
+
+EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
+
+OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
+
+TEMPERATURE=0
 ```
 
 ---
 
-## 5. Agregar los documentos
-
-Copiar todos los archivos PDF dentro de
+## 📚 Construcción del índice
 
 ```
-data/documentos_pdf/
-```
-
-Ejemplo:
-
-```
-manual_garantias.pdf
-
-politica_reembolsos.pdf
-
-guia_envios.pdf
-
-metodos_pago.pdf
-
-programa_afiliados.pdf
-```
-
----
-
-## 6. Construir el índice FAISS
-
-Ejecutar:
-
-```bash
 python crear_indice.py
 ```
 
-Se generarán automáticamente:
+Esto generará automáticamente:
 
 ```
-data/vectorstore/index.faiss
-
-data/vectorstore/index.pkl
+data/vectorstore/
+    ├── index.faiss
+    └── index.pkl
 ```
-
-Este proceso solo debe ejecutarse nuevamente cuando se agreguen o modifiquen documentos.
 
 ---
 
-## 7. Ejecutar el servidor
+## ▶ Ejecutar localmente
 
-```bash
+```
+pip install -r requirements.txt
+
 python app.py
 ```
 
-El sistema quedará disponible en:
+o
 
 ```
-http://127.0.0.1:5000
-```
-
----
-
-# Flujo de funcionamiento
-
-```
-Documentos PDF
-        │
-        ▼
-crear_indice.py
-        │
-        ▼
-Embeddings
-        │
-        ▼
-FAISS
-        │
-        ▼
-Índice persistente
-        │
-──────────────
-        │
-Pregunta del usuario
-        │
-        ▼
-Búsqueda semántica
-        │
-        ▼
-Fragmentos relevantes
-        │
-        ▼
-OpenRouter
-        │
-        ▼
-Respuesta del asistente
+flask run
 ```
 
 ---
 
-# Variables de entorno
+## 🌐 Endpoints
 
-| Variable | Descripción |
-|-----------|-------------|
-| OPENROUTER_API_KEY | API Key de OpenRouter |
-| MODEL_NAME | Modelo de lenguaje |
-| EMBEDDING_MODEL | Modelo de embeddings |
-| CHUNK_SIZE | Tamaño de los fragmentos |
-| CHUNK_OVERLAP | Superposición entre fragmentos |
-| TOP_K | Número de documentos recuperados |
-| SIMILARITY_THRESHOLD | Umbral de similitud |
-
----
-
-# API
-
-## Estado del servidor
+### Estado
 
 ```
 GET /health
 ```
 
-Respuesta:
+### Información
 
-```json
-{
-  "success": true,
-  "message": "BimBam Agent v2.0 funcionando correctamente."
-}
+```
+GET /status
 ```
 
----
-
-## Consultar al asistente
+### Consulta
 
 ```
 POST /preguntar
 ```
 
-Body:
+Body
 
 ```json
 {
-    "pregunta":"¿Cómo funciona una garantía?"
+    "pregunta": "¿Qué cubre la garantía?"
 }
 ```
 
-Respuesta:
+Respuesta
 
 ```json
 {
     "success": true,
-    "data":{
-        "respuesta":"..."
+    "data": {
+        "respuesta": "..."
     }
 }
 ```
 
 ---
 
-# Modelos compatibles
+## 🛠 Tecnologías
 
-El proyecto puede utilizar cualquier modelo disponible en OpenRouter.
-
-Ejemplos:
-
-- meta-llama/llama-3.3-70b-instruct
-- deepseek/deepseek-chat-v3
-- qwen/qwen3-235b-a22b
-- openai/gpt-5
-- anthropic/claude-sonnet-4
-
-Solo es necesario modificar:
-
-```
-MODEL_NAME
-```
-
-en el archivo `.env`.
-
----
-
-# Despliegue
-
-El proyecto está preparado para ejecutarse en:
-
-- PythonAnywhere
+- Python 3.11
+- Flask
+- LangChain
+- FAISS
+- HuggingFace Embeddings
+- OpenRouter
+- PyMuPDF
 - Railway
-- Render
-- Docker
+- Netlify
 
 ---
 
-# Roadmap
+## 📄 Licencia
 
-Próximas mejoras:
+MIT License
 
-- Historial de conversaciones.
-- Memoria por usuario.
-- Citas del documento utilizado.
-- Referencia de página.
-- Panel administrativo.
-- Streaming de respuestas.
-- OCR para documentos escaneados.
-- Soporte para Word, Excel y PowerPoint.
-- Estadísticas de uso.
 
----
 
-# Licencia
 
-Proyecto desarrollado para **BimBam Buy**.
 
----
-
-# Autor
-
-Desarrollado por **EditionDP** con apoyo de **ChatGPT (OpenAI)** como asistente para el diseño, desarrollo y optimización del sistema RAG.
