@@ -362,6 +362,15 @@ Variables configuradas desde Railway.
 
 ## Frontend
 
+https://github.com/EditionDP/Web_Agente_BimBam.git
+
+Preguntas Frecuentes 
+- ¿Qué debo tener en cuenta para una garantía?
+- ¿Qué hago si un producto me llego dañado?
+- Me puedes hablar de las comisiones,
+- Que debo tener en cuenta para devolver un producto. 
+
+
 Netlify
 
 Simplemente publicar el proyecto HTML.
