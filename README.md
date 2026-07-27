@@ -9,6 +9,9 @@
 
 Asistente Inteligente basado en IA para BimBam Buy.
 
+<img width="720" height="480" alt="Imagen_Bienvedida" src="https://github.com/user-attachments/assets/76abfd6e-1d8b-4934-851e-9a7164b9b4d0" />
+
+
 Utiliza un sistema **RAG (Retrieval-Augmented Generation)** con **FAISS + LangChain + OpenRouter** para responder únicamente con información contenida en la documentación oficial de la empresa.
 
 ---
@@ -21,6 +24,14 @@ Ingresa Aquí para mirar el entorno.
 **https://agentebimbam.netlify.app/**
 
 <img width="988" height="692" alt="image" src="https://github.com/user-attachments/assets/165c9ffd-3301-4266-b32b-7c22b48de05a" />
+
+y se anexa video de evidencia del chat, 
+
+<video src="https://github.com/user-attachments/assets/c6924c1a-3f50-4156-a6c6-86444a3bc0c3" controls width="100%"></video>
+
+
+
+
 
 El sistema está compuesto por:
 
