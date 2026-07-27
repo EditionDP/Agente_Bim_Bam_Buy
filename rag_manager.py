@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 class RAGManager:
-
+    
     def __init__(self):
         
         self.llm = self._cargar_llm()
