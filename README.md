@@ -1,4 +1,4 @@
-# 🤖 BimBam Agent v2.0
+# 🤖 BimBam Buy Agent 
 
 Asistente inteligente desarrollado para **BimBam Buy** utilizando **Flask + LangChain + FAISS + OpenRouter**, capaz de responder preguntas basadas exclusivamente en una base documental compuesta por archivos PDF.
 
