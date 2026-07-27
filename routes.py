@@ -29,7 +29,7 @@ api = Blueprint("api", __name__)
 
 #rag = RAGManager()
 rag = None
-rag.cargar_indice()
+#rag.cargar_indice()
 
 
 # --------------------------------------------------------
