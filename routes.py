@@ -27,8 +27,8 @@ api = Blueprint("api", __name__)
 # Inicializar el motor RAG una sola vez
 # --------------------------------------------------------
 
-#rag = RAGManager()
-rag = None
+rag = RAGManager()
+#rag = None
 #rag.cargar_indice()
 
 
