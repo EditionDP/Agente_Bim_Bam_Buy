@@ -58,7 +58,7 @@ class RAGManager:
     # ==========================================
     # Cargar modelo de Embeddings
     # ==========================================
-    ef _cargar_embeddings(self):
+    def _cargar_embeddings(self):
 
     logging.info("Cargando modelo de Embeddings...")
 
