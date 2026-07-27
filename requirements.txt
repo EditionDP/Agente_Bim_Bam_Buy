@@ -26,3 +26,5 @@ markdown==3.7
 colorlog==6.8.2
 
 gunicorn==23.0.0
+
+transformers==4.44.2
