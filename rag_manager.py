@@ -45,26 +45,16 @@ class RAGManager:
     # ==========================================
     # Cargar el modelo LLM
     # ==========================================
-    def _cargar_embeddings(self):
+    def _cargar_llm(self):
         
-        logging.info("Cargando modelo de Embeddings...")
+        logging.info("Cargando modelo LLM...")
         
-        return HuggingFaceEmbeddings(
+        return ChatOpenAI(
             
-            
-            model_name=EMBEDDING_MODEL,
-            
-            model_kwargs={
-                
-                "device": "cpu"
-            
-            },
-            
-            encode_kwargs={
-                
-                "normalize_embeddings": True
-            
-            }
+            model=MODEL_NAME,
+            api_key=OPENROUTER_API_KEY,
+            base_url=OPENROUTER_BASE_URL,
+            temperature=TEMPERATURE,
         
         )
    
