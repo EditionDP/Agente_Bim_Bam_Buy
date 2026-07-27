@@ -27,17 +27,19 @@ class RAGManager:
         
         self.retriever = None
         
-       # Si ya existe el índice lo carga
+       # Cargar el índice automáticamente
         
         if Path(FAISS_INDEX_FILE).exists():
             
-            logging.info("Índice encontrado.")
+            logging.info("Cargando índice FAISS...")
             
             self.cargar_indice()
         
         else:
             
-            logging.info("No existe índice.")
+            logging.info("No existe índice. Creándolo automáticamente...")
+            
+            self.crear_indice()
 
     
     # ==========================================
@@ -59,19 +61,14 @@ class RAGManager:
     # Cargar modelo de Embeddings
     # ==========================================
     def _cargar_embeddings(self):
-
-    logging.info("Cargando modelo de Embeddings...")
-
-    return HuggingFaceEmbeddings(
-        model_name=EMBEDDING_MODEL,
-        model_kwargs={
-            "device": "cpu"
-        },
-        encode_kwargs={
-            "normalize_embeddings": True,
-            "batch_size": 8
-        }
-    )
+        
+        logging.info("Cargando modelo de Embeddings...")
+        
+        return HuggingFaceEmbeddings(
+            
+            model_name=EMBEDDING_MODEL
+        
+        )
     
     # ==========================================
     # Crear índice FAISS
