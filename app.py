@@ -37,22 +37,25 @@ def create_app():
     # -----------------------------
 
     CORS(
-    app,
-    resources={
-        r"/*": {
-            "origins": [
-                "*"
-            ]
+        app,
+        
+        resources={
+            r"/*": {
+                "origins": [
+                    "https://agentebimbam.netlify.app/",
+                    "http://localhost:3000",
+                    "http://127.0.0.1:3000",
+                ]
+            }
         }
-    }
-)
+    )
 
     # -----------------------------
     # Registrar Blueprint
     # -----------------------------
 
     app.register_blueprint(api)
-
+    
     return app
 
 
