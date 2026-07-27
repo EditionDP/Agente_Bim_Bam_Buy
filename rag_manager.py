@@ -26,6 +26,17 @@ class RAGManager:
         self.vectorstore = None
 
         self.retriever = None
+
+        # Cargar índice automáticamente
+        if Path(FAISS_INDEX_FILE).exists():
+
+            logging.info("Cargando índice FAISS...")
+
+            self.cargar_indice()
+
+        else:
+
+            logging.warning("No existe un índice FAISS.")
     
     # ==========================================
     # Cargar el modelo LLM
@@ -41,23 +52,7 @@ class RAGManager:
             base_url="https://openrouter.ai/api/v1",
             temperature=0
         )
-    # -----------------------------
-    # Cargar o crear el índice
-    # -----------------------------
-
-    if Path(FAISS_INDEX_FILE).exists():
-        
-        logging.info("Cargando índice FAISS...")
-        
-        self.cargar_indice()
-    
-    else:
-        
-        logging.info("No existe índice. Creándolo automáticamente...")
-        
-        self.crear_indice()
-
-
+   
     # ==========================================
     # Cargar modelo de Embeddings
     # ==========================================
