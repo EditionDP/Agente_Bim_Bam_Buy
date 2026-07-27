@@ -56,14 +56,22 @@ class RAGManager:
     # ==========================================
     # Cargar modelo de Embeddings
     # ==========================================
-    def _cargar_embeddings(self):
+    ef _cargar_embeddings(self):
 
-        logging.info("Cargando modelo de Embeddings...")
+    logging.info("Cargando modelo de Embeddings...")
 
-        return HuggingFaceEmbeddings(
-            model_name=EMBEDDING_MODEL
-        )
-        # ==========================================
+    return HuggingFaceEmbeddings(
+        model_name=EMBEDDING_MODEL,
+        model_kwargs={
+            "device": "cpu"
+        },
+        encode_kwargs={
+            "normalize_embeddings": True,
+            "batch_size": 8
+        }
+    )
+    
+    # ==========================================
     # Crear índice FAISS
     # ==========================================
     def crear_indice(self):
@@ -159,6 +167,9 @@ class RAGManager:
                 return "No existe un índice FAISS. Ejecute crear_indice.py primero."
 
         try:
+            import gc
+            
+            gc.collect()
 
             documentos = self.retriever.invoke(pregunta)
 
