@@ -38,16 +38,11 @@ def create_app():
 
     CORS(
         app,
-        
-        resources={
-            r"/*": {
-                "origins": [
-                    "https://agentebimbam.netlify.app/",
-                    "http://localhost:3000",
-                    "http://127.0.0.1:3000",
-                ]
-            }
-        }
+        origins=[
+            "https://agentebimbam.netlify.app",
+            "http://localhost:3000",
+            "http://127.0.0.1:3000"
+        ]
     )
 
     # -----------------------------
@@ -69,7 +64,12 @@ app = create_app()
 # =====================================================
 # Inicio
 # =====================================================
-
+@app.route("/")
+def home():
+    return {
+        "success": True,
+        "message": "BimBam Agent v2.0 funcionando correctamente."
+    }
 if __name__ == "__main__":
 
     app.run(
@@ -82,9 +82,4 @@ if __name__ == "__main__":
 
     )
 
-@app.route("/")
-def home():
-    return {
-        "success": True,
-        "message": "BimBam Agent v2.0 funcionando correctamente."
-    }
+
