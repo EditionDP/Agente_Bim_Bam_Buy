@@ -22,83 +22,176 @@ Ingresa Aquí para mirar el entorno.
 
 <img width="988" height="692" alt="image" src="https://github.com/user-attachments/assets/165c9ffd-3301-4266-b32b-7c22b48de05a" />
 
+El sistema está compuesto por:
 
-### Backend API
-
-https://agente-bimbam-buy-production.up.railway.app
-
----
-
-## 🚀 Características
-
-- ✅ Chat en tiempo real
-- ✅ Interfaz moderna y responsiva
-- ✅ Recuperación semántica mediante FAISS
-- ✅ Embeddings con HuggingFace
-- ✅ LLM mediante OpenRouter
-- ✅ Base documental en PDF
-- ✅ Índice FAISS persistente
-- ✅ API REST con Flask
-- ✅ Despliegue en Railway
-- ✅ Frontend en Netlify
+- Backend desarrollado en **Python + Flask**
+- Motor RAG con **LangChain + FAISS**
+- Embeddings mediante **HuggingFace**
+- Modelo LLM servido desde **OpenRouter**
+- Frontend desarrollado en **HTML + CSS + JavaScript**
+- Backend desplegado en **Railway**
+- Frontend desplegado en **Netlify**
 
 ---
 
-## 🏗 Arquitectura
+# Arquitectura
 
 ```
+Usuario
+    │
+    ▼
 Frontend (Netlify)
-        │
-        ▼
+    │
+    ▼
 Flask API (Railway)
-        │
-        ▼
+    │
+    ▼
 RAG Manager
-        │
- ┌──────────────┐
- │ FAISS Index  │
- └──────────────┘
-        │
-        ▼
-PDFs de conocimiento
-        │
-        ▼
-OpenRouter LLM
+    │
+    ├── FAISS
+    ├── Embeddings HuggingFace
+    ├── PDFs
+    ▼
+OpenRouter (LLM)
 ```
 
 ---
 
-## 📁 Estructura del proyecto
+# Tecnologías utilizadas
+
+## Backend
+
+- Python 3.11
+- Flask
+- Flask-CORS
+- Gunicorn
+- LangChain
+- FAISS
+- HuggingFace Embeddings
+- OpenRouter API
+- PyMuPDF
+- RecursiveCharacterTextSplitter
+
+---
+
+## Frontend
+
+- HTML5
+- CSS3
+- JavaScript ES6
+- Fetch API
+- Animación de escritura (Typing Indicator)
+- Diseño Responsive
+- Glassmorphism UI
+
+---
+
+# Funcionalidades
+
+✔ Chat inteligente
+
+✔ Recuperación de información mediante RAG
+
+✔ Consulta únicamente sobre documentos internos
+
+✔ Respuestas usando OpenRouter
+
+✔ Índice FAISS persistente
+
+✔ Consultas rápidas
+
+✔ Indicador de escritura
+
+✔ Historial local
+
+✔ Botón para limpiar conversación
+
+✔ Compatible con móviles
+
+---
+
+# Estructura del proyecto
 
 ```
 Agente_Bim_Bam_Buy/
+
 │
 ├── app.py
+├── config.py
 ├── routes.py
 ├── rag_manager.py
 ├── crear_indice.py
-├── config.py
 ├── requirements.txt
 ├── render.yaml
-├── runtime.txt
 │
-├── data/
-│   ├── pdf/
-│   └── vectorstore/
+├── pdfs/
+│      Programa_Afiliados.pdf
+│      Garantias.pdf
+│      Reembolsos.pdf
+│      Pagos.pdf
+│      Envios.pdf
 │
-├── logs/
+├── vectorstore/
+│      index.faiss
+│      index.pkl
+│
+├── templates/
+│
+├── static/
 │
 └── README.md
 ```
 
 ---
 
-## ⚙ Variables de entorno
+# Instalación
 
+## Clonar
+
+```bash
+git clone https://github.com/EditionDP/Agente_Bim_Bam_Buy.git
+
+cd Agente_Bim_Bam_Buy
 ```
-OPENROUTER_API_KEY=
 
-MODEL_NAME=
+---
+
+## Crear entorno virtual
+
+Windows
+
+```bash
+python -m venv .venv
+
+.venv\Scripts\activate
+```
+
+Linux
+
+```bash
+python3 -m venv .venv
+
+source .venv/bin/activate
+```
+
+---
+
+## Instalar dependencias
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# Variables de entorno
+
+Crear un archivo `.env`
+
+```text
+OPENROUTER_API_KEY=xxxxxxxxxxxxxxxx
+
+MODEL_NAME=meta-llama/llama-3.3-70b-instruct
 
 EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
 
@@ -109,64 +202,56 @@ TEMPERATURE=0
 
 ---
 
-## 📚 Construcción del índice
+# Construcción del índice
+
+Los documentos PDF deben estar en
 
 ```
+pdfs/
+```
+
+Luego ejecutar
+
+```bash
 python crear_indice.py
 ```
 
-Esto generará automáticamente:
+Esto genera
 
 ```
-data/vectorstore/
-    ├── index.faiss
-    └── index.pkl
+vectorstore/
+
+index.faiss
+
+index.pkl
 ```
+
+Estos archivos deben incluirse en el despliegue para evitar reconstruir el índice.
 
 ---
 
-## ▶ Ejecutar localmente
+# Ejecutar localmente
 
-```
-pip install -r requirements.txt
-
+```bash
 python app.py
 ```
 
-o
+Servidor
 
 ```
-flask run
+http://localhost:5000
 ```
 
 ---
 
-## 🌐 Endpoints
+# Endpoints
 
-### Estado
+## Estado
 
-```
-GET /health
-```
-
-### Información
+GET
 
 ```
-GET /status
-```
-
-### Consulta
-
-```
-POST /preguntar
-```
-
-Body
-
-```json
-{
-    "pregunta": "¿Qué cubre la garantía?"
-}
+/status
 ```
 
 Respuesta
@@ -175,30 +260,184 @@ Respuesta
 {
     "success": true,
     "data": {
-        "respuesta": "..."
+        "status":"online"
     }
 }
 ```
 
 ---
 
-## 🛠 Tecnologías
+## Health
 
-- Python 3.11
-- Flask
-- LangChain
-- FAISS
-- HuggingFace Embeddings
-- OpenRouter
-- PyMuPDF
-- Railway
-- Netlify
+GET
+
+```
+/health
+```
 
 ---
 
-## 📄 Licencia
+## Consultar
 
-MIT License
+POST
+
+```
+/preguntar
+```
+
+Body
+
+```json
+{
+    "pregunta":"¿Qué cubre la garantía?"
+}
+```
+
+Respuesta
+
+```json
+{
+    "success":true,
+    "data":{
+        "respuesta":"..."
+    }
+}
+```
+
+---
+
+# Frontend
+
+El frontend es una SPA desarrollada únicamente con HTML, CSS y JavaScript.
+
+Características:
+
+- Interfaz tipo chat.
+- Animación de escritura.
+- Preguntas rápidas.
+- Diseño responsivo.
+- Comunicación mediante Fetch API.
+- Limpieza del historial.
+- Indicador visual de estado del asistente.
+
+La URL del backend se configura mediante una constante:
+
+```javascript
+const URL_CHAT_OFICIAL =
+"https://agente-bimbam-buy-production.up.railway.app/preguntar";
+```
+
+---
+
+# Despliegue
+
+## Backend
+
+Railway
+
+Comando de inicio
+
+```text
+gunicorn app:app
+```
+
+Variables configuradas desde Railway.
+
+---
+
+## Frontend
+
+Netlify
+
+Simplemente publicar el proyecto HTML.
+
+---
+
+# Configuración CORS
+
+El backend permite conexiones desde
+
+```python
+https://agentebimbam.netlify.app
+```
+
+y
+
+```python
+localhost
+```
+
+mediante Flask-CORS.
+
+---
+
+# Modelo utilizado
+
+LLM
+
+```
+meta-llama/llama-3.3-70b-instruct
+```
+
+Proveedor
+
+```
+OpenRouter
+```
+
+Embeddings
+
+```
+sentence-transformers/all-MiniLM-L6-v2
+```
+
+Vector Store
+
+```
+FAISS
+```
+
+---
+
+# Flujo RAG
+
+```
+Pregunta
+
+↓
+
+Embeddings
+
+↓
+
+FAISS
+
+↓
+
+Recuperación de documentos
+
+↓
+
+Construcción del contexto
+
+↓
+
+OpenRouter
+
+↓
+
+Respuesta
+```
+
+---
+
+# Autor
+
+**EditionDP**
+
+Proyecto desarrollado como solución de IA para **BimBam Buy**, integrando técnicas modernas de Retrieval-Augmented Generation (RAG), modelos de lenguaje de gran escala y una interfaz web para soporte inteligente al cliente.
+
+---
 
 
 
