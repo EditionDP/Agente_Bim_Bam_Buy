@@ -54,20 +54,27 @@ class RAGManager:
             model=MODEL_NAME,
             api_key=OPENROUTER_API_KEY,
             base_url=OPENROUTER_BASE_URL,
-            temperature=TEMPERATURE,
+            temperature=TEMPERATURE
         
         )
-   
-    # ==========================================
-    # Cargar modelo de Embeddings
-    # ==========================================
+
+
     def _cargar_embeddings(self):
         
         logging.info(f"Cargando embeddings: {EMBEDDING_MODEL}")
         
         return HuggingFaceEmbeddings(
+            model_name=EMBEDDING_MODEL,            
+            model_kwargs={               
+                "device": "cpu"
             
-            model_name=EMBEDDING_MODEL
+            },
+            
+            encode_kwargs={
+                
+                "normalize_embeddings": True
+            
+            }
         
         )
     
