@@ -76,6 +76,11 @@ class RAGManager:
             }
         
         )
+        
+    def es_saludo(self, texto):
+        
+        return texto.lower().strip() in SALUDOS
+
     
     # ==========================================
     # Crear índice FAISS
@@ -166,6 +171,10 @@ class RAGManager:
     # Realizar una consulta al RAG
     # ==========================================
     def preguntar(self, pregunta):
+
+        if self.es_saludo(pregunta):
+            
+            return MENSAJE_BIENVENIDA
 
         if self.retriever is None:
 
