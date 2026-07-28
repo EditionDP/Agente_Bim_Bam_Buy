@@ -65,6 +65,40 @@ EMBEDDING_MODEL = os.getenv(
 )
 
 # -------------------------------------------------------
+# Saludos 
+# -------------------------------------------------------
+SALUDOS = {
+    "hola",
+    "hola!",
+    "buenos días",
+    "buenos dias",
+    "buen día",
+    "buen dia",
+    "buenas tardes",
+    "buenas noches",
+    "buenas",
+    "hey",
+    "hi"
+}
+
+# -------------------------------------------------------
+# Mensaje Bienvenida
+# -------------------------------------------------------
+MENSAJE_BIENVENIDA = """
+¡Hola! 👋 Soy el asistente virtual de BimBam Buy.
+
+Estoy listo para ayudarte con:
+
+• Garantías
+• Envíos
+• Devoluciones
+• Métodos de pago
+• Programa de Afiliados
+
+¿En qué puedo ayudarte hoy?
+"""
+
+# -------------------------------------------------------
 # FAISS
 # -------------------------------------------------------
 
