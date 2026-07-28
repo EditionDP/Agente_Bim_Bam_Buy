@@ -171,7 +171,11 @@ class RAGManager:
     # Realizar una consulta al RAG
     # ==========================================
     def preguntar(self, pregunta):
-
+        
+        def es_saludo(self, texto):
+            
+            return texto.lower().strip() in SALUDOS
+            
         if self.es_saludo(pregunta):
             
             return MENSAJE_BIENVENIDA
