@@ -23,17 +23,16 @@ Ingresa Aquí para mirar el entorno.
 
 **https://agentebimbam.netlify.app/**
 
-<img width="988" height="692" alt="image" src="https://github.com/user-attachments/assets/165c9ffd-3301-4266-b32b-7c22b48de05a" />
+<img width="1601" height="918" alt="Buy" src="https://github.com/user-attachments/assets/c7f273fe-12f4-485d-8787-bbf6734a91d4" />
+
 
 y se anexa video de evidencia del chat, 
 
-<video src="https://github.com/user-attachments/assets/c6924c1a-3f50-4156-a6c6-86444a3bc0c3" controls width="100%"></video>
+<video src="https://github.com/user-attachments/assets/1269df0b-e88c-4837-9562-056a2984c407" controls width="100%"></video>
 
 
 
-
-
-El sistema está compuesto por:
+**El sistema está compuesto por:**
 
 - Backend desarrollado en **Python + Flask**
 - Motor RAG con **LangChain + FAISS**
@@ -458,7 +457,7 @@ Respuesta
 # Autor
 <img width="720" height="480" alt="ChatGPT Image 27 jul 2026, 01_33_07 p m" src="https://github.com/user-attachments/assets/60549e50-4f53-43a3-baa2-24b4c6333cda" />
 
-**EditionDP**
+**EditionDP - ChatGPT 2026**
 
 Proyecto desarrollado como solución de IA para **BimBam Buy**, integrando técnicas modernas de Retrieval-Augmented Generation (RAG), modelos de lenguaje de gran escala y una interfaz web para soporte inteligente al cliente.
 
